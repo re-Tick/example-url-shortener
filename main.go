@@ -150,7 +150,7 @@ func getRoutes() []*webgo.Route {
 	}
 }
 
-var col *integrations.MongoDB
+var col *integrations.MongoCollection
 var logger *zap.Logger
 
 func New(host, db string) (*mongo.Client, error) {
@@ -172,7 +172,7 @@ func main() {
 		logger.Fatal("failed to create mgo db client", zap.Error(err))
 	}
 	db := client.Database(ddName)
-	col = integrations.NewMongoDB(db.Collection(collection))
+	col = integrations.NewMongoCollection(db.Collection(collection))
 
 	cfg := &webgo.Config{
 		Host:         "",
